@@ -9,6 +9,6 @@
    * [广告位](ad.md)
    * [个人中心](store/user.md)
    * [优惠券](coupon.md)
-   * webpos
+   * [webpos](webpos.md)
    * CMS
 
