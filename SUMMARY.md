@@ -11,5 +11,5 @@
    * [优惠券](store/coupon.md)
    * [webpos](webpos.md)
    * [CMS](store/cms.md)
-   * 格式模板
+   * [格式模板](store/template.md)
 
