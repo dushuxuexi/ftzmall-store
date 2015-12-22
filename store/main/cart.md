@@ -1,10 +1,33 @@
 # 购物车
 
 ###  模块规划
-//to be done
+
+购物车牵涉的模块：
+
+1. cart
+2. search
+3. price
+4. inventory
+5. promotion
+6. member
+
 ###  设计思路
-//to be done
+1. 首先从cart模块获取商品的id和数量以及相应的静态描述信息
+2. 从search中获取：上下架、税率、起订、限购、组合商品的子商品信息等
+3. 从inventory批量获取库存
+4. 对购物车的点选、修改、删除等操作，都会触发calculate，promotion
+
 ###  代码实现
+主要文件：
+
+webstore_0.3/frontend/controllers/CartController.php
+webstore_0.3/mobile/controllers/CartController.php
+webstore_0.3/common/models/CartBaseApi.php
+webstore_0.3/frontend/themes/ftzmallnew/cart/cart.php
+webstore_0.3/mobile/themes/ftzmallnew/cart/cart.php
+webstore_0.3/common/models/PromotionBaseApi.php
+webstore_0.3/frontend/web/themes/ftzmallnew/src/js/cbt.ft.cart.js
+webstore_0.3/mobile/web/themes/wxnew/js/m.ft.cart.js
 
 #### 1. php加载部分
 
@@ -38,12 +61,18 @@
 
 ### 2. js异步加载
 ####2.1. 检查库存
+        主要函数 checkInventory()，getRightQuantity()
         1.1 如果库存=0，提示无货，该商品不可操作
-        1.2 根据当前要买的数量，起订，限购，库存之间的关系，得出一个合适的数量，如果当前用户添加的数量不满足这个关系自动帮用户修改数量，更新价格
+        1.2 根据当前要买的数量，起订，限购，库存之间的关系，得出一个合适的数量，如果当前用户添加的数量不满足这个关系自动帮用户修改数量，更新价格：
 ####2.2. 刷新价格
+
+
+        主要函数 updateItemKindsPrice()，updatePriceByStore()
         2.2.1 根据用户选中的商品（cartlineId），在php端组成计算需要的数据，计算价格：
         2.2.2. offerprice是从（1）里获取，promotionprice是从计算接口返回，
 ####2.3. 查询包邮提醒
+
+        主要函数 checkShippingRule
         根据固定的tag查询是否有包邮规则
 ####2.4. 其他
         //TBD
@@ -64,11 +93,15 @@
         3.4.1 根据选中的商品，提交数据（只提交cartlineId）
         3.4.2 在提交之前会对商品的购买规范进行检查，如果不通过，则不能提交
 ##  功能体验
+[www.ftzmall.com](www.ftzmall.com),
 
+[m.ftzmall.com](m.ftzmall.com)
 
 ##  开发和使用
+参见源代码 svn://svn.15kdy.com/project
 
 // to be done 
+
 ####  待改进部分
 1. 添加购物车的时候，购物车中保存了很多无用的信息，购物车中能用的只有一些静态信息，如 itemId, displaytext, imagelink之类的 price, buyable,taxrate等等信息或者不是实时的或者没有保存
 2. 计算API，为了支持直接购买，每次计算需要传很大一块数据过去，基本上把购物车原封不动的传过去了，建议是不是可以把这两个API分开
