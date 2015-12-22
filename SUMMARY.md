@@ -1,7 +1,7 @@
 # Summary
 
 * [前端文档](README.md)
-   * 广告位
+   * [广告位](ad.md)
    * 个人中心
    * 优惠券
    * webpos
