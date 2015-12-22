@@ -5,4 +5,5 @@
    * [详情页](store/product.md)
    * [购物车](store/cart.md)
    * [结算页](store/checkout.md)
+   * 支付
 
