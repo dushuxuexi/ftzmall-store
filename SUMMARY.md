@@ -9,7 +9,7 @@
    * [广告位](store/ad.md)
    * [个人中心](store/user.md)
    * [优惠券](store/coupon.md)
-   * [webpos](webpos.md)
+   * [webpos](store/webpos.md)
    * [CMS](store/cms.md)
    * [格式模板](store/template.md)
 
