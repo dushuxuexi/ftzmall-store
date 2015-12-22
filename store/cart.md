@@ -4,9 +4,9 @@
 
 ### 1. php加载部分
 
-    1. getCartList API获取购物车信息
+    1.1 getCartList API获取购物车信息
         * itemId，quantity等
-    2. 调用getExtraInfoFromSearch获取实时和额外的信息
+    2.1 调用getExtraInfoFromSearch获取实时和额外的信息
         * processGetSinglePrice 先去获取offerprice（这是最新最准的价格）
         * taxRate
         * buyable
@@ -22,7 +22,7 @@
             - Sales-Weight
             - Sales-WeightUOM
             - itemTaxRate
-    3. 获取额外信息以后根据itemId一一映射到购物车的数据中用于显示和计算，如果某一个商品在search中没有返回结果，则对该商品进行下架处理。
+    3.1. 获取额外信息以后根据itemId一一映射到购物车的数据中用于显示和计算，如果某一个商品在search中没有返回结果，则对该商品进行下架处理。
     
     
     除此之外，还需要做两个辅助的工作：
