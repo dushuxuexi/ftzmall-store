@@ -10,5 +10,5 @@
    * [个人中心](store/user.md)
    * [优惠券](coupon.md)
    * [webpos](webpos.md)
-   * CMS
+   * [CMS](cms.md)
 
