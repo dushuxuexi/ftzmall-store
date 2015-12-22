@@ -1,7 +1,7 @@
 # Summary
 
 * [前端文档](README.md)
-   * 主购物流程
+   * 1.主购物流程
        * [详情页](store/product.md)
        * [购物车](store/cart.md)
        * [结算页](store/checkout.md)
