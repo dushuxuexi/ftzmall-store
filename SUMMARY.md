@@ -4,7 +4,7 @@
    * 主购物流程
        * [详情页](store/main/product.md)
        * [购物车](store/main/cart.md)
-       * [结算页](store/checkout.md)
+       * [结算页](store/main/checkout.md)
        * [支付](store/payment.md)
    * [广告位](store/ad.md)
    * [个人中心](store/user.md)
