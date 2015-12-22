@@ -1,54 +1,60 @@
 # 购物车
-购物车
 
-1)	程序流程
-a)	php加载部分
-i)	getCartList API获取购物车信息
-(1)	itemId，quantity等
-ii)	调用getExtraInfoFromSearch获取实时和额外的信息
-(1)	processGetSinglePrice 先去获取offerprice（这是最新最准的价格）
-(2)	taxRate
-(3)	buyable
-(4)	minBuyCount
-(5)	maxBuyCount
-(6)	productId（对于多sku的商品，需要父id用于显示详情页）
-(7)	promotionPrice（这个不是实时的，虽然会去取，但在实际中并没有使用）
-(8)	children 组合商品会有这个字段
-(a)	quantity
-(b)	parentCatentryId（同 productID）
-(c)	itemDisplayText
-(d)	itemImageLink
-(e)	Sales-Weight
-(f)	Sales-WeightUOM
-(g)	itemTaxRate
-iii)	获取额外信息以后根据itemId 一一映射到购物车的数据中用于显示和计算，如果某一个商品在search中没有返回结果，则对该商品进行下架处理。
-除此之外，还需要做两个辅助的工作：
-1，写cookie（数量，起订，限购等）
-2，写缓存（方便结算页后校验使用）
-	
+## 1. 程序流程
+
+### 1. php加载部分
+
+    1. getCartList API获取购物车信息
+        * itemId，quantity等
+    2. 调用getExtraInfoFromSearch获取实时和额外的信息
+        * processGetSinglePrice 先去获取offerprice（这是最新最准的价格）
+        * taxRate
+        * buyable
+        * minBuyCount
+        * maxBuyCount
+        * productId（对于多sku的商品，需要父id用于显示详情页）
+        * promotionPrice（这个不是实时的，虽然会去取，但在实际中并没有使用）
+        * children 组合商品会有这个字段
+            - quantity
+            - parentCatentryId（同 productID）
+            - itemDisplayText
+            - itemImageLink
+            - Sales-Weight
+            - Sales-WeightUOM
+            - itemTaxRate
+    3. 获取额外信息以后根据itemId一一映射到购物车的数据中用于显示和计算，如果某一个商品在search中没有返回结果，则对该商品进行下架处理。
+    
+    
+    除此之外，还需要做两个辅助的工作：
+    *  写cookie（数量，起订，限购等）
+    *  写缓存（方便结算页后校验使用）
+
+
 	至此，php加载结束，剩下的都在页面使用js动态加载
 
-b)	js异步加载
-i)	检查库存
-(1)	如果库存=0，提示无货，该商品不可操作
-(2)	根据当前要买的数量，起订，限购，库存之间的关系，得出一个合适的数量，如果当前用户添加的数量不满足这个关系自动帮用户修改数量，更新价格
-ii)	刷新价格
-(1)	根据用户选中的商品（cartlineId），在php端组成计算需要的数据，计算价格：
-(2)	offerprice是从a)里获取，promotionprice是从计算接口返回，
-iii)	查询包邮提醒
-(1)	根据固定的tag查询是否有包邮规则
-iv)	其他
+### 2. js异步加载
+####2.1. 检查库存
+        1.1 如果库存=0，提示无货，该商品不可操作
+        1.2 根据当前要买的数量，起订，限购，库存之间的关系，得出一个合适的数量，如果当前用户添加的数量不满足这个关系自动帮用户修改数量，更新价格
+####2.2. 刷新价格
+        2.2.1 根据用户选中的商品（cartlineId），在php端组成计算需要的数据，计算价格：
+        2.2.2. offerprice是从（1）里获取，promotionprice是从计算接口返回，
+####2.3. 查询包邮提醒
+        根据固定的tag查询是否有包邮规则
+####2.4. 其他
+        //TBD
 
-c)	点击操作
-i)	点选
-(1)	每次点选都会调用刷新价格，重新计算价格，促销
-ii)	更改数量
-(1)	检查所修改的数量是否符合规范
-(a)	限购，起订 这两个值是放在cookie里的
-(b)	库存，当库存大于500的时候库存会放在cookie中
-(c)	在最终更新的时候，仍然会检查库存（cookie中没有）
-(2)	刷新该商品所在的那一单的价格
-iii)	删除
+
+### 3. 用户操作
+####3.1 点选
+        每次点选都会调用刷新价格，重新计算价格，促销
+####3.2 更改数量
+        3.2.1 检查所修改的数量是否符合规范
+            (a) 限购，起订 这两个值是放在cookie里的
+            (b) 库存，当库存大于500的时候库存会放在cookie中
+            (c) 在最终更新的时候，仍然会检查库存（cookie中没有）
+        3.2.1 刷新该商品所在的那一单的价格
+####3.3 删除
 (1)	刷新价格
 d)	提交
 i)	根据选中的商品，提交数据（只提交cartlineId）
