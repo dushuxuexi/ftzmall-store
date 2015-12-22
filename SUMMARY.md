@@ -2,5 +2,5 @@
 
 * [前端文档](README.md)
 * 模块
-   * [第1节](document_sample.md)
+   * [详情页](document_sample.md)
 
