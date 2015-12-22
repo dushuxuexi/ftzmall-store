@@ -4,4 +4,5 @@
 * 模块
    * [详情页](store/product.md)
    * [购物车](store/cart.md)
+   * 结算页
 
