@@ -6,7 +6,7 @@
 //to be done
 ###  代码实现
 
-##### 1. php加载部分
+#### 1. php加载部分
 
     1.1 getCartList API获取购物车信息
         * itemId，quantity等
