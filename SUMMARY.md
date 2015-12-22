@@ -8,7 +8,7 @@
        * [支付](store/payment.md)
    * [广告位](ad.md)
    * [个人中心](store/user.md)
-   * 优惠券
+   * [优惠券](coupon.md)
    * webpos
    * CMS
 
